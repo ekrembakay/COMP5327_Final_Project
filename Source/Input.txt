@@ -1,0 +1,4 @@
+#def generate(numRows): num = [[1], [1, 1]] if numRows == 1: return num[0] elif numRows == 2: return num elif numRows == 0: return []  row = []    for i in range(2, numRows):         for j in range(i - 1):          row.append(sum(num[-1][j:j + 2]))           num.append([1] + row + [1])            row = [] return num
+#def find_minimum(arr):  min = arr[0][0]    for i in arr:        for j in i:             If min > j:             min = j
+#def removeNb(n):    if n==1: return sum = (n * (n+1))/2 retArr = [] for i in range(n):      for j in range(n):          if j != i and i * j == ((sum - j) - i):         retArr.append([i, j])           retArr.sort()       return retArr
+#def search_duplicate(arr):  duplicate_list = [] for i in range(len(arr)):       for j in range(i+1, len(arr)):          if (arr[i] == arr[j]) and (arr[j] not in duplicate_list):               duplicate_list.append(arr[i])
