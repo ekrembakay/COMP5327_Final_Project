@@ -30,8 +30,6 @@ def get_data(data_path, num_samples):
             for char in line:
                 if char not in output_characters:
                     output_characters.add(char)
-    print(input_characters)
-    print(output_characters)
 
     return input_characters, output_characters, input_texts, output_texts
 
@@ -144,10 +142,10 @@ def decode_sequence(input_seq):
 
 
 if __name__ == '__main__':
-    n_features = 200 + 1
-    batch_size = 64
-    epochs = 200
-    latent_dim = 256
+    n_features = 200 + 1 #initial value 200+1, tried 300 +1
+    batch_size = 1 # initial value 64 , tried 32, 24,
+    epochs = 100 # initial value = 200, tried 250, 300, 350, 150, 100
+    latent_dim = 128 # initial value = 256, tried 300, 400, 128*
     num_samples = 10000
     data_path = os.path.join(os.getcwd(), "Source")
 
@@ -168,13 +166,15 @@ if __name__ == '__main__':
 
     model = compile_model(num_encoder_tokens, num_decoder_tokens, encoder_input_data, decoder_input_data,decoder_target_data)
 
+    model.summary()
+
     plot_model(model, to_file='modelsummary2.png', show_shapes=True, show_layer_names=True)
 
     encoder_model, decoder_model, reverse_input_char_index, reverse_target_char_index = get_decoder(model)
 
     i = np.random.choice(len(input_texts))
     input_seq = encoder_input_data[i:i+1]
-    translation = decode_sequence(input_seq)
+    improved_algorithm = decode_sequence(input_seq)
     print('-')
-    print('Input:', input_texts[i])
-    print('Translation:', translation)
+    print('O(N^2) Algorithm:', input_texts[i])
+    print('O(N) Algorithm:', improved_algorithm)
