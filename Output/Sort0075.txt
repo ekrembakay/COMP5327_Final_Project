@@ -1,0 +1,10 @@
+def sortColors2(nums):
+    pos = 0
+    for i in range(len(nums)):
+        if nums[pos] == 0:
+            nums.insert(0, nums.pop(pos))
+        elif nums[pos] == 2:
+            nums.append(nums.pop(pos))
+            pos -= 1
+        pos += 1
+    return nums

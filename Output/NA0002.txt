@@ -1,0 +1,9 @@
+def removeNb2(n):
+  retArr = []
+  j = 0
+  sumN = (n * (n+1))/2
+  for i in range(1, n):
+    j = int((sumN - i) / (i + 1))
+    if j < n and i * j == ((sumN - j) - i):
+      retArr.append([i, j])
+  return retArr

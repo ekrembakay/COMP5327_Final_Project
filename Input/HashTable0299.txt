@@ -1,0 +1,21 @@
+def getHint(secret, guess):
+    bull, cow = 0, 0
+    used= []
+    for i in range(len(guess)):
+        si = secret[i]
+        gi = guess[i]
+        if si == gi:
+            bull += 1
+            used.append(True)
+        else:
+            used.append(False)
+    for i in range(len(guess)):
+        gi = guess[i]
+        if secret[i] == gi:
+            continue
+        for j in range(len(guess)):
+            if secret[j] == gi and not used[j]:
+                cow += 1
+                used[j] = True
+                break;
+    return str(bull) + "A" + str(cow) + "B"

@@ -1,0 +1,21 @@
+def canCompleteCircuit(gas, cost):
+    n = len(gas)
+    min_cost = min(cost)
+    max_gas = max(gas)
+    start_pos_list = []
+    for i, c in enumerate(cost):
+        if c == min_cost or gas[i] == max_gas:
+            start_pos_list.append(i)
+    for start_pos in start_pos_list:
+        isComplete = True
+        quantity = 0
+        pos = start_pos
+        for i in range(n):
+            quantity += gas[pos] - cost[pos]
+            pos = (pos + 1) % n
+            if quantity < 0:
+                isComplete = False
+                break
+        if isComplete:
+            return start_pos
+    return -1

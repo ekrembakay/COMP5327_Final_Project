@@ -1,0 +1,10 @@
+def search_duplicate_dic(arr):
+    values = {}
+    duplicate_list = []
+    for i in range(len(arr)):
+        if arr[i] not in values:
+            values[arr[i]] = 1
+        else:
+            values[arr[i]] += 1
+            if arr[i] not in duplicate_list:
+                duplicate_list.append(arr[i])

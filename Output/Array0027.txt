@@ -1,0 +1,7 @@
+def removeElement2(nums, value):
+    tail = 0
+    for i in range(len(nums)):
+        if nums[i] != value:
+            nums[tail] = nums[i]
+            tail += 1
+    return tail

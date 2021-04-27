@@ -1,0 +1,16 @@
+def convert(s, numRows):
+    if numRows==1:
+        return s 
+    s = list(s)
+    result = []
+    for row in range(numRows):
+        if row==0 or row==numRows-1:
+            tmp_row_list = [row] 
+        else:
+            tmp_row_list = [row, 2*numRows-2-row]
+        while tmp_row_list[0]<len(s):
+            for i, tmp_row in enumerate(tmp_row_list):
+                if tmp_row<len(s):
+                    result.append(s[tmp_row])
+                    tmp_row_list[i] += 2*numRows-2
+    return "".join(result)

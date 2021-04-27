@@ -1,0 +1,25 @@
+def convert2(s, numRows):
+    if numRows==1:
+        return s 
+    iter_capacity = 2*numRows-2
+    iter_col_num = numRows-1
+    min_iter_num = len(s)//iter_capacity + (1 if len(s)%iter_capacity!=0 else 0)
+    col_num_need = min_iter_num*iter_col_num
+    matrix = [["" for _ in range(col_num_need)] for _ in range(numRows)]
+    direction = 1 # 1 represent down , 0 represent up
+    row_index, col_index = 0, 0
+    for i, c in enumerate(list(s)):
+        matrix[row_index][col_index] = c 
+        if row_index + 1 ==numRows: # hit bottom line 
+            direction = 0 
+        elif row_index == 0:
+            direction = 1
+        if direction == 1:
+            row_index += 1 
+        elif direction==0:
+            row_index -= 1
+            col_index += 1
+    result = ""        
+    for row in matrix:
+        result += "".join(row)
+    return result

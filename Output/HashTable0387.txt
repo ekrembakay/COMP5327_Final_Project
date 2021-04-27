@@ -1,0 +1,6 @@
+def firstUniqChar2(s):
+    tmp = list(s)
+    for i in range(len(tmp)):
+        if tmp.count(tmp[i]) == 1:
+            return i
+    return -1

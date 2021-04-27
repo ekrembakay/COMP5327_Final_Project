@@ -1,0 +1,7 @@
+def countBits(num):
+    result = [0 for _ in range(num + 1)]
+    for i in range(num + 1):
+        for j in str(bin(i))[2:]:
+            if j == '1':
+                result[i] += 1
+    return result

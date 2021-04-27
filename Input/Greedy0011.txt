@@ -1,0 +1,6 @@
+def maxArea(A):
+    area = 0
+    for i in range(len(A)):
+        for j in range(len(A)):
+            area = max(area, min(A[i], A[j]) * (j - i))
+    return area

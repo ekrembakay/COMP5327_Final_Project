@@ -1,0 +1,16 @@
+def sortedSquares(A):
+    for i in range(len(A)):
+        A[i] = pow(A[i], 2)
+
+    for i in range(len(A)-1):
+        currVal = A[i]
+        index = i + 1
+        for j in range(index, len(A)):
+            if A[j] < currVal:
+                index = j
+                currVal = A[j]
+        if A[i] > A[index]:
+            temp = A[index]
+            A[index] = A[i]
+            A[i] = temp
+    return A

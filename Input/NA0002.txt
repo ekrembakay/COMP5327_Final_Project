@@ -1,0 +1,10 @@
+def removeNb(n):
+  if n==1: return
+  sum = (n * (n+1))/2
+  retArr = []
+  for i in range(n):
+    for j in range(n):
+       if j != i and i * j == ((sum - j) - i):
+         retArr.append([i, j])
+  retArr.sort()
+  return retArr

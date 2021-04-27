@@ -1,0 +1,16 @@
+def selfDividingNumbers2(left, right):
+    res = []
+    for i in range(left, right + 1):
+        if i < 10:
+            res.append(i)
+        else:
+            j = list(map(int, str(i)))
+            if 0 not in j:
+                result = map(lambda y: "true" if i % y == 0 else "false", j)
+                if "false" not in result:
+                    div = True
+                else:
+                    div = False
+                if div == True:
+                    res.append(i)
+    return res

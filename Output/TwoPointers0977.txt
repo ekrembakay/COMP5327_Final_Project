@@ -1,0 +1,5 @@
+def sortedSquares2(A):
+    for i in range(len(A)):
+        A[i] *= A[i]
+    A.sort()
+    return A

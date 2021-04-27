@@ -1,0 +1,9 @@
+def removeElement(nums, value):
+    count = 0
+    for i in range(len(nums)):
+        if nums[i] == value:
+            count += 1
+            for j in range(i + 1, len(nums)):
+                nums[j - 1] = nums[j]
+            nums[-1] = -1
+    return len(nums) - count

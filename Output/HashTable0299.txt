@@ -1,0 +1,16 @@
+def getHint2(secret, guess):
+    bull, cow, dic = 0, 0, {}
+    for i in range(len(secret)):
+        s, g = secret[i], guess[i]
+        if s == g:
+            bull += 1
+        else:
+            if s not in dic:
+                dic[s] = [0, 0]
+            if g not in dic:
+                dic[g] = [0, 0]
+            dic[s][0] += 1
+            dic[g][1] += 1
+    for key, val in dic.items():
+        cow += min(val)
+    return str(bull) + "A" + str(cow) + "B"

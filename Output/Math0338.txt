@@ -1,0 +1,5 @@
+def countBits2(num):
+    result = []
+    for n in range(num + 1):
+        result.append(int(bin(n)[2:].count('1')))
+    return result

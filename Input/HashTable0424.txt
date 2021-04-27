@@ -1,0 +1,16 @@
+def characterReplacement(s, k):
+    if len(s) == 0:
+        return 0
+    ret = 1
+    mostFreqNumCount = 0
+    for i in range(len(s)):
+        chars_cnt = [0] * 26
+        for j in range(i, len(s)):
+            chars_cnt[ord(s[j])-65] += 1
+            mostFreqNumCount = max(chars_cnt[ord(s[j])-65], mostFreqNumCount)
+            lenght = j - i + 1
+            if lenght - mostFreqNumCount > k:
+                chars_cnt[ord(s[i])-65] -= 1
+                continue
+            ret = max(ret, lenght)
+    return ret

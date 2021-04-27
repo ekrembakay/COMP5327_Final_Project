@@ -1,0 +1,10 @@
+def lengthOfLongestSubstring2(s):
+    i = 0
+    ans = 0
+    acct_c = {}
+    for j in range(len(s)):
+        if s[j] in acct_c:
+            i = max(i, acct_c[s[j]] + 1)
+        ans = max(ans, j - i + 1)
+        acct_c[s[j]] = j
+    return ans

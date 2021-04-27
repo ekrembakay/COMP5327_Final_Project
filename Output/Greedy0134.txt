@@ -1,0 +1,11 @@
+def canCompleteCircuit2(gas, cost):
+    start = diff = tank = 0
+    for i in range(len(gas)):
+        tank += gas[i] - cost[i]
+        if tank < 0:
+            start = i + 1
+            diff += tank
+            tank = 0
+    if tank + diff >= 0:
+        return start
+    return -1

@@ -1,0 +1,8 @@
+def containsDuplicate2(nums):
+    hashNum = {}
+    for i in nums:
+        if i not in hashNum:
+            hashNum[i] = 1
+        else:
+            return True
+    return False

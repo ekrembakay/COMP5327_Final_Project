@@ -1,0 +1,10 @@
+def firstUniqChar(s):
+    for i in range(len(s)):
+        a = True
+        for j in range(len(s)):
+            if s[i] == s[j] and i != j:
+                a = False
+                break
+        if a:
+            return i
+    return -1

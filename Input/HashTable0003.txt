@@ -1,0 +1,13 @@
+def lengthOfLongestSubstring(s):
+    if len(s) < 2: return len(s)
+    result = 0
+    for i in range(len(s)):
+        temp = s[i]
+        for j in range(i + 1, len(s)):
+            if s[j] not in temp:
+                temp += s[j]
+            else:
+                result = max(result, len(temp))
+                break
+        result = max(result, len(temp))
+    return result

@@ -1,0 +1,12 @@
+def numberOfArithmeticSlices(A):
+    cnt =0
+    for i in range(len(A)-1):
+        ap =A[i]-A[i+1]
+        temp=A[i]
+        for j in range(i+1, len(A)):
+            if temp-A[j]!=ap:
+                break
+            if j>= i+2:
+                cnt+=1
+            temp =A[j]
+    return cnt

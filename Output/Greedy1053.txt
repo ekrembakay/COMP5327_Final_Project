@@ -1,0 +1,16 @@
+def prevPermOpt12(A):
+    t, flag = A[-1], 0
+    for i in range(len(A) - 1, -1, -1):
+        if A[i] > t:
+            flag, l = 1, i
+            break
+        else:
+            temp = A[i]
+    if not flag:
+        return A
+    r = l + 1
+    for i in range(r, len(A)):
+        if A[r] < A[i] < A[l]:
+            r = i
+    A[l],A[r] = A[r], A[l]
+    return A
