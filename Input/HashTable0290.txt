@@ -1,6 +1,5 @@
-def wordPattern(pattern: str, str: str) -> bool:
+def wordPattern(pattern, str):
     words = str.split()
-
     if len(pattern) != len(words):
         return False
     for i in range(len(pattern)):

@@ -1,6 +1,5 @@
-def wordPattern2(pattern: str, str: str) -> bool:
+def wordPattern2(pattern, str):
     words = str.split()
-
     if len(pattern) != len(words):
         return False
     match = {}
