@@ -9,7 +9,7 @@ def generate_files(input_path, filename):
                 string += re.sub('\s{2,4}', '$', line.strip("\n")) + "?"
             output += "#" + string + "\n"
 
-    with open(filename, 'w') as fout:
+    with open("Source/" + filename, 'w') as fout:
         fout.writelines(output)
 
 if __name__ == '__main__':

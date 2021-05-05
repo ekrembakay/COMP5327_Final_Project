@@ -1,0 +1,2 @@
+def validating_uid(input1, input2):
+    [print('Valid' if all([re.search(r, s) for r in [r'[A-Za-z0-9]{10}',r'([A-Z].*){2}',r'([0-9].*){3}']]) and not re.search(r'.*(.).*\1', s) else 'Invalid') for s in [input1 for _ in range(int(input2))]]

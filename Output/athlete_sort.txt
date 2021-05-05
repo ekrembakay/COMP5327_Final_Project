@@ -1,0 +1,6 @@
+def athlete_sort2(n, m):
+    nums = [list(map(int, input().split())) for i in range(n)]
+    k = int(input())
+    nums.sort(key=lambda x: x[k])
+    for line in nums:
+        print(*line, sep=' ')

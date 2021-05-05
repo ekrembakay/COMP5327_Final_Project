@@ -7,7 +7,8 @@ from keras.optimizers import *
 import os
 import numpy as np
 from keras.utils.vis_utils import plot_model
-
+import re
+import export_result
 
 def get_data(data_path, num_samples):
     input_texts = []
@@ -116,9 +117,24 @@ def get_decoder(model):
 
     return encoder_model, decoder_model, reverse_input_char_index, reverse_target_char_index
 
+def prediction_input(file):
+    with open(file) as fin:
+        string = ""
+        for line in fin:
+            string += re.sub('\s{2,4}', '$', line.strip("\n")) + "?"
+
+    encoder_in = np.zeros(
+        (1, max_encoder_seq_length, num_encoder_tokens), dtype="float32"
+    )
+
+    for t, char in enumerate(string):
+        encoder_in[0, t, input_token_index[char]] = 1.0
+    encoder_in[0, t + 1:, input_token_index[" "]] = 1.0
+
+    return encoder_in, string
 
 def predict_sequence(input_seq):
-    states_value = encoder_model.predict(input_seq)
+    states_value = encod_model.predict(input_seq)
 
     target_seq = np.zeros((1, 1, num_decoder_tokens))
     target_seq[0, 0, output_token_index["#"]] = 1.0
@@ -126,7 +142,7 @@ def predict_sequence(input_seq):
     stop_condition = False
     decoded_sentence = ""
     while not stop_condition:
-        output_tokens, h, c = decoder_model.predict([target_seq] + states_value)
+        output_tokens, h, c = decod_model.predict([target_seq] + states_value)
 
         sampled_token_index = np.argmax(output_tokens[0, -1, :])
         sampled_char = reverse_target_char_index[sampled_token_index]
@@ -144,10 +160,10 @@ def predict_sequence(input_seq):
 
 if __name__ == '__main__':
     n_features = 200 + 1 #initial value 200+1, tried 300 +1
-    batch_size = 1 # initial value 64 , tried 32, 24,
+    batch_size = 1 # initial value 64 , tried 32, 24, 2, 1
     epochs = 100 # initial value = 200, tried 250, 300, 350, 150, 100
     num_units = 128 # initial value = 256, tried 128*
-    num_samples = 10000
+    num_samples = 20000
     data_path = os.path.join(os.getcwd(), "Source")
 
     input_characters, output_characters, input_texts, output_texts = get_data(data_path, num_samples)
@@ -169,13 +185,14 @@ if __name__ == '__main__':
 
     model.summary()
 
-    plot_model(model, to_file='modelsummary2.png', show_shapes=True, show_layer_names=True)
+    plot_model(model, to_file='modelsummary.png', show_shapes=True, show_layer_names=True)
 
-    encoder_model, decoder_model, reverse_input_char_index, reverse_target_char_index = get_decoder(model)
+    encod_model, decod_model, reverse_input_char_index, reverse_target_char_index = get_decoder(model)
 
-    i = np.random.choice(len(input_texts))
-    input_seq = encoder_input_data[i:i+1]
+    input_seq, prediction_text = prediction_input("PredictionInput.txt")
     improved_algorithm = predict_sequence(input_seq)
     print('-')
-    print('O(N^2) Algorithm:', input_texts[i])
+    print('O(N^2) Algorithm:', prediction_text)
     print('O(N) Algorithm:', improved_algorithm)
+
+    export_result.exoprt_file(improved_algorithm)

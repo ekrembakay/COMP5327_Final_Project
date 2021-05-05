@@ -1,0 +1,3 @@
+def itertools_combinations2(s, k):
+    for size in range(int(k)):
+        print(*map("".join,combinations(sorted(s), size+1)),sep="\n")

@@ -1,0 +1,2 @@
+def company_logo2():
+    [print(*k) for k in Counter(sorted(input())).most_common(3)]

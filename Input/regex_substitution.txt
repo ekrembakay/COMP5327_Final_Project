@@ -1,0 +1,12 @@
+def regex_substitution(n):
+    for i in range(n):
+        s = input()
+        m = re.sub(r'\s\&\&\s', r' and ', s, 1)
+        while s != m:
+            s = m
+            m = re.sub(r'\s\&\&\s', r' and ', s, 1)
+        v = re.sub(r'\s\|\|\s', r' or ', s, 1)
+        while s != v:
+            s = v
+            v = re.sub(r'\s\|\|\s', r' or ', s, 1)
+        print(s)

@@ -1,0 +1,2 @@
+def validating_uid2(input1, input2):
+    [print('Valid') if re.match(r'^(?!.*(.).*\1)(?=(?:.*[A-Z]){2,})(?=(?:.*\d){3,})[a-zA-Z0-9]{10}$', input1) else print('Invalid') for _ in range(int(input2))]

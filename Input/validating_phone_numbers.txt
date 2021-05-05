@@ -1,0 +1,8 @@
+def validating_phone_numbers(N):
+    for _ in range(N):
+        s=input()
+        if len(s)==10 and s[0] in ['7','8','9'] and sum([1 for x in s if x.isdigit()])==10:
+            print("YES")
+        else:   
+            print("NO")
+

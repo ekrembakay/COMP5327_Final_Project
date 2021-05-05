@@ -1,0 +1,2 @@
+def itertools_permutations2(s, n):
+    print(*[''.join(i) for i in permutations(sorted(s),int(n))],sep='\n')

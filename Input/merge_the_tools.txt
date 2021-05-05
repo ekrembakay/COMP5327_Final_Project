@@ -1,0 +1,8 @@
+def merge_the_tools(S, K, N):
+    for x in range(0, N, K):
+        slicedStr = s[x : x+K]
+        uni =[]
+        for y in slicedStr:
+            if y not in uni:
+                uni.append(y)
+        print(''.join(uni))

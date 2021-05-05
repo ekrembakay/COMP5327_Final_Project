@@ -1,0 +1,22 @@
+def company_logo(s):
+    dic = {}
+    for x in s:
+        if x not in dic :
+            dic[x]=1
+        elif x in dic :
+            dic[x] =dic[x]+1
+    count = 0
+    m=  "}"
+    for y in dic.copy():
+        if count in range(3):
+            temp = 0
+            m=  "}"
+            for x in dic :
+                if temp < dic[x]:
+                    temp= dic[x]
+                    m = x
+                elif temp == dic[x]:
+                    m = x if x < m else m
+            print(m , dic[m])
+            del dic[m]
+            count = count+1

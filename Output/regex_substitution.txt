@@ -1,0 +1,3 @@
+def regex_substitution2(N):
+    for i in range(N):
+        print re.sub(r'(?<= )(&&|\|\|)(?= )', lambda x: 'and' if x.group() == '&&' else 'or', raw_input())

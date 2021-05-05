@@ -1,0 +1,6 @@
+def itertools_permutations(string, number):
+    per_list=sorted(list(permutations(string,int(number))))
+    for i in range(len(per_list)):
+        for j in range(len(per_list[i])):
+            print(per_list[i][j],end='')
+        print(end="\n")

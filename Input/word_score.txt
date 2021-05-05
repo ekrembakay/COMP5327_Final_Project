@@ -1,0 +1,12 @@
+def score_words(string):   
+    score = 0    
+    for word in string:   
+        vowel=0   
+        for letter in word:   
+            if letter in ('aeiouy'):   
+                vowel+=1   
+        if vowel%2==0:   
+            score+=2   
+        else:   
+            score+=1    
+    return score          
